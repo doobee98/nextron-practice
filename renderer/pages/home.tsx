@@ -11,12 +11,12 @@ function Home() {
 
     ipcRenderer.on('test', (event, data) => {
       console.log(data);
-      setMessages(prevMessages => [...prevMessages, data]);
+      setMessages((prevMessages) => [...prevMessages, data]);
     });
 
     return () => {
       ipcRenderer.removeAllListeners('test');
-    }
+    };
   }, []);
 
   return (
@@ -32,10 +32,12 @@ function Home() {
           </Link>
         </p>
         <img src="/images/logo.png" />
-        {messages.map(message => <div key={message}>{message}</div>)}
+        {messages.map((message) => (
+          <div key={message}>{message}</div>
+        ))}
       </div>
     </React.Fragment>
   );
-};
+}
 
 export default Home;

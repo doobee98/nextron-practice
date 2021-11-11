@@ -18,6 +18,6 @@ function Next() {
       </div>
     </React.Fragment>
   );
-};
+}
 
 export default Next;

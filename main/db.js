@@ -1,4 +1,4 @@
-const sqlite3 = require("sqlite3").verbose();
+const sqlite3 = require('sqlite3').verbose();
 
 const isProd = process.env.NODE_ENV === 'production';
 const ASSETS_PATH = isProd ? './resources/assets' : './assets';
