@@ -1,5 +1,6 @@
-import { app } from 'electron';
+import { app, ipcMain } from 'electron';
 import serve from 'electron-serve';
+import { getData } from './db';
 import { createWindow } from './helpers';
 
 const isProd: boolean = process.env.NODE_ENV === 'production';
@@ -29,4 +30,8 @@ if (isProd) {
 
 app.on('window-all-closed', () => {
   app.quit();
+});
+
+ipcMain.on('test', (event, data) => {
+  getData(event);
 });
