@@ -2,19 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ButtonWrapper = styled.button`
-  border-color: transparent;
-  border-radius: 9999px;
+  /* border-color: transparent; */
+  border-radius: 20px;
+  border: 1px solid black;
   padding: 10px;
   font-size: 15px;
   cursor: pointer;
-  color: inherit;
-  background-color: inherit;
+  color: black;
+  background-color: lightgray;
   display: flex;
   justify-content: space-around;
   align-items: center;
+
   &:focus {
     outline: none;
   }
+
   &:disabled {
     cursor: auto;
     opacity: 0.5;

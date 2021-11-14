@@ -76,6 +76,8 @@ class AuthApi {
       authrization: this.authrization,
     };
 
+    console.log(request);
+
     const result: RegisterResponse = await ipcRenderer.invoke(
       IPC_MESSAGES.REGISTER,
       request,

@@ -6,7 +6,7 @@ import AuthApi from 'renderer/apis/AuthApi';
 import Button from 'renderer/components/base/Button';
 import useInput from 'renderer/hooks/useInput';
 
-const LoginWrapper = styled.div`
+const RegisterWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -28,29 +28,36 @@ const Input = styled.input`
   }
 `;
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
   const [id, onChangeId] = useInput('');
   const [password, onChangePassword] = useInput('');
+  const [name, onChangeName] = useInput('');
+  const [carNumber, onChangeCarNumber] = useInput('');
   const router = useRouter();
 
-  const goToRegisterPage = () => {
-    router.push('/register');
+  const goToLoginPage = () => {
+    router.push('/login');
   };
 
-  const handleLogin = async () => {
-    const response = await AuthApi.instance.login({ id, password });
+  const handleRegister = async () => {
+    const response = await AuthApi.instance.register({
+      id,
+      password,
+      name,
+      car_number: carNumber === '' ? undefined : carNumber,
+    });
+
     if (response.isSuccess) {
-      router.push('/user/all');
+      router.push('/login');
     }
   };
-
   return (
     <React.Fragment>
       <Head>
-        <title>로그인</title>
+        <title>회원가입</title>
       </Head>
-      <LoginWrapper>
-        <h2>Login</h2>
+      <RegisterWrapper>
+        <h2>Register</h2>
         <Input placeholder="ID" value={id} onChange={onChangeId} />
         <Input
           type="password"
@@ -58,11 +65,17 @@ const Login: React.FC = () => {
           value={password}
           onChange={onChangePassword}
         />
-        <Button onClick={handleLogin}>Login</Button>
-        <Button onClick={goToRegisterPage}>Register</Button>
-      </LoginWrapper>
+        <Input placeholder="Name" value={name} onChange={onChangeName} />
+        <Input
+          placeholder="Car Number"
+          value={carNumber}
+          onChange={onChangeCarNumber}
+        />
+        <Button onClick={handleRegister}>Register!</Button>
+        <Button onClick={goToLoginPage}>Back</Button>
+      </RegisterWrapper>
     </React.Fragment>
   );
 };
 
-export default Login;
+export default Register;

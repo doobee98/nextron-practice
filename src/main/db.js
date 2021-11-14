@@ -18,10 +18,16 @@ db.query = function (sql, params) {
 };
 
 const getUser = async (id) => {
-  const query = 'SELECT * FROM users';
+  const query = `SELECT * FROM users WHERE id = '${id}'`;
   const user = await db.query(query, []);
   return user;
 };
 
-const DB = { getUser };
+const addUser = async ({ id, password, name, car_number }) => {
+  const query = `INSERT INTO users VALUES ('${id}', '${password}', '${name}', '${car_number}')`;
+  const user = await db.query(query, []);
+  return user;
+};
+
+const DB = { getUser, addUser };
 export default DB;
