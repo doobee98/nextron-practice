@@ -21,7 +21,6 @@ class AuthApi {
   }
 
   async login(params: ApiParams<LoginRequest>): Promise<LoginResponse> {
-    // save auth key
     if (this.authrization) {
       return Promise.reject(new Error('이미 로그인되어 있습니다.'));
     }
@@ -67,6 +66,10 @@ class AuthApi {
   async register(
     params: ApiParams<RegisterRequest>,
   ): Promise<RegisterResponse> {
+    if (this.authrization) {
+      return Promise.reject(new Error('이미 로그인되어 있습니다.'));
+    }
+
     const request: RegisterRequest = {
       ...params,
       method: 'POST',
