@@ -1,6 +1,6 @@
 import { app, ipcMain } from 'electron';
 import serve from 'electron-serve';
-import DB, { getUser } from './db';
+import DB from './db';
 import { createWindow } from './helpers';
 import { IPC_MESSAGES } from '../constants';
 import LoginRequest from 'models/request/auth/LoginRequest';
@@ -33,26 +33,6 @@ if (isProd) {
 
 app.on('window-all-closed', () => {
   app.quit();
-});
-
-ipcMain.handle('test', async (event, args) => {
-  const result = await DB.getData();
-  console.log(result);
-  return result;
-});
-
-ipcMain.handle('profile', async (event, args) => {
-  console.log(args);
-  const userData = [
-    {
-      id: '1',
-      user_id: '2doo',
-      password: '123456789a',
-    },
-  ];
-  console.log(userData);
-
-  return userData;
 });
 
 ipcMain.handle(

@@ -17,26 +17,11 @@ db.query = function (sql, params) {
   });
 };
 
-export const getData = async () => {
-  // const stmt = 'select count(*) from users';
-  const query = 'SELECT id, user_id, password FROM users';
-  let result = [];
-  let a = await db.all(query);
-  // db.serialize(() => {
-  //   db.each(query, (err, row) => {
-  //     const data = `${row.id} - ${row.user_id}[${row.password}]`;
-  //     console.log(data);
-  //     result.push(data);
-  //   });
-  // });
-  return result;
-};
-
-export const getUser = async (id) => {
+const getUser = async (id) => {
   const query = 'SELECT * FROM users';
   const user = await db.query(query, []);
   return user;
 };
 
-const DB = { getData, getUser };
+const DB = { getUser };
 export default DB;
