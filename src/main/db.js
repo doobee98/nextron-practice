@@ -17,6 +17,12 @@ db.query = function (sql, params) {
   });
 };
 
+const getAllUsers = async () => {
+  const query = 'SELECT * FROM users';
+  const users = await db.query(query, []);
+  return users;
+};
+
 const getUser = async (id) => {
   const query = `SELECT * FROM users WHERE id = '${id}'`;
   const user = await db.query(query, []);
@@ -29,5 +35,10 @@ const addUser = async ({ id, password, name, car_number }) => {
   return user;
 };
 
-const DB = { getUser, addUser };
+const updateUser = async ({ id, password, name, car_number }) => {
+  const query = `UPDATE users SET password='${password}', name='${name}', car_number='${car_number}' WHERE id='${id}'`;
+  await db.query(query, []);
+};
+
+const DB = { getAllUsers, getUser, addUser };
 export default DB;
