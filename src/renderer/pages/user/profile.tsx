@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import Logout from 'renderer/components/Logout';
 
 function UserProfile() {
   return (
@@ -8,6 +9,7 @@ function UserProfile() {
         <title>User Profile</title>
       </Head>
       <div>특정 유저</div>
+      <Logout />
     </React.Fragment>
   );
 }
